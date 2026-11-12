@@ -1,14 +1,16 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { CalendarDays, CheckCircle2, Clock, MessageSquareText, Phone, Sparkles, UserRound } from "lucide-react";
+import { CalendarDays, CheckCircle2, Loader2, MessageSquareText, Phone, Sparkles, UserRound } from "lucide-react";
 import Image from "next/image";
-import { type FormEvent, type ReactNode, useEffect, useState } from "react";
+import { type FormEvent, type ReactNode, useCallback, useEffect, useState } from "react";
+import { DateTimePicker } from "@/components/ui/DateTimePicker";
 import { Reveal } from "@/components/ui/Reveal";
 import { WhatsAppIcon } from "@/components/ui/SocialIcons";
 import { images, promotions, services } from "@/lib/data";
 import { site } from "@/lib/site";
-import { cn, timeSlots, whatsappUrl } from "@/lib/utils";
+import type { Availability } from "@/lib/booking/types";
+import { cn, whatsappUrl } from "@/lib/utils";
 
 type FormState = {
   name: string;
@@ -22,8 +24,6 @@ type FormState = {
 type Errors = Partial<Record<keyof FormState, string>>;
 
 const initialState: FormState = { name: "", phone: "", service: "", date: "", time: "", notes: "" };
-
-const slots = timeSlots(site.booking.firstSlot, site.booking.lastSlot, site.booking.stepMinutes);
 
 const serviceOptions = [
   ...services.map((s) => s.title),
@@ -39,11 +39,6 @@ const steps: { icon: IconType; text: string }[] = [
   { icon: WhatsAppIcon, text: "Envía tu solicitud por WhatsApp" },
 ];
 
-function toISODate(d: Date) {
-  const off = d.getTimezoneOffset();
-  return new Date(d.getTime() - off * 60_000).toISOString().slice(0, 10);
-}
-
 function formatDate(iso: string) {
   return new Date(`${iso}T12:00:00`).toLocaleDateString("es-MX", {
     weekday: "long",
@@ -53,28 +48,37 @@ function formatDate(iso: string) {
   });
 }
 
-function validate(f: FormState, minDate: string): Errors {
+function validate(f: FormState): Errors {
   const e: Errors = {};
   if (f.name.trim().length < 2) e.name = "Escribe tu nombre.";
   const digits = f.phone.replace(/\D/g, "");
   if (digits.length < 10 || digits.length > 13) e.phone = "Escribe un número de WhatsApp válido (10 dígitos).";
   if (!f.service) e.service = "Elige un servicio.";
-  if (!f.date) e.date = "Elige una fecha.";
-  else if (minDate && f.date < minDate) e.date = "La fecha no puede ser anterior a hoy.";
-  else if ((site.booking.closedWeekdays as readonly number[]).includes(new Date(`${f.date}T12:00:00`).getDay()))
-    e.date = "Ese día permanecemos cerrados. Elige otra fecha.";
-  if (!f.time) e.time = "Elige un horario.";
+  if (!f.date) e.date = "Elige una fecha en el calendario.";
+  else if (!f.time) e.time = "Elige un horario.";
   return e;
 }
 
 export function Booking() {
   const [form, setForm] = useState<FormState>(initialState);
   const [errors, setErrors] = useState<Errors>({});
-  const [minDate, setMinDate] = useState("");
+  const [availability, setAvailability] = useState<Availability | null>(null);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [sentUrl, setSentUrl] = useState<string | null>(null);
 
-  // Fecha mínima calculada en el cliente (evita desajustes de hidratación)
-  useEffect(() => setMinDate(toISODate(new Date())), []);
+  const loadAvailability = useCallback(async () => {
+    try {
+      const res = await fetch("/api/availability", { cache: "no-store" });
+      if (res.ok) setAvailability(await res.json());
+    } catch {
+      /* se reintenta al enviar */
+    }
+  }, []);
+
+  useEffect(() => {
+    loadAvailability();
+  }, [loadAvailability]);
 
   // Preselección del servicio desde las tarjetas de servicios
   useEffect(() => {
@@ -91,11 +95,39 @@ export function Booking() {
     if (errors[key]) setErrors((er) => ({ ...er, [key]: undefined }));
   };
 
-  const onSubmit = (e: FormEvent) => {
+  const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    const found = validate(form, minDate);
+    if (submitting) return;
+    const found = validate(form);
     setErrors(found);
+    setSubmitError(null);
     if (Object.keys(found).length > 0) return;
+
+    // Abrimos la pestaña ya (en el clic) para que el navegador no la bloquee tras la espera.
+    const tab = window.open("", "_blank");
+    setSubmitting(true);
+    try {
+      const res = await fetch("/api/appointments", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      // Si el servidor falla (p. ej. base de datos caída) seguimos con WhatsApp para no perder la cita.
+      if (!res.ok && res.status < 500) {
+        const { error } = (await res.json().catch(() => ({}))) as { error?: string };
+        tab?.close();
+        setSubmitError(error ?? "No pudimos registrar tu cita. Inténtalo de nuevo.");
+        if (res.status === 409) {
+          setForm((f) => ({ ...f, time: "" }));
+          loadAvailability();
+        }
+        return;
+      }
+    } catch {
+      /* sin respuesta del servidor: seguimos con WhatsApp */
+    } finally {
+      setSubmitting(false);
+    }
 
     const lines = [
       "¡Hola Estética Airam! ✨ Me gustaría agendar una cita:",
@@ -110,8 +142,14 @@ export function Booking() {
     lines.push("", "Quedo atenta a su confirmación. ¡Gracias! 💖");
 
     const url = whatsappUrl(lines.join("\n"));
-    window.open(url, "_blank", "noopener,noreferrer");
+    if (tab) {
+      tab.opener = null;
+      tab.location.href = url;
+    } else {
+      window.location.href = url;
+    }
     setSentUrl(url);
+    loadAvailability();
   };
 
   const reset = () => {
@@ -242,35 +280,20 @@ export function Booking() {
                     </select>
                   </Field>
 
-                  <Field label="Fecha de preferencia" icon={CalendarDays} error={errors.date}>
-                    <input
-                      id="date"
-                      type="date"
-                      min={minDate || undefined}
-                      value={form.date}
-                      onChange={(e) => update("date")(e.target.value)}
-                      className="field"
-                      aria-invalid={!!errors.date}
+                  <Field
+                    as="div"
+                    label="Fecha y hora de tu cita"
+                    icon={CalendarDays}
+                    error={errors.date ?? errors.time}
+                    className="sm:col-span-2"
+                  >
+                    <DateTimePicker
+                      date={form.date}
+                      time={form.time}
+                      onDateChange={update("date")}
+                      onTimeChange={update("time")}
+                      availability={availability}
                     />
-                  </Field>
-
-                  <Field label="Hora de preferencia" icon={Clock} error={errors.time}>
-                    <select
-                      id="time"
-                      value={form.time}
-                      onChange={(e) => update("time")(e.target.value)}
-                      className={cn("field", !form.time && "text-nude-400")}
-                      aria-invalid={!!errors.time}
-                    >
-                      <option value="" disabled>
-                        Selecciona un horario
-                      </option>
-                      {slots.map((s) => (
-                        <option key={s} value={s} className="text-ink-800">
-                          {s} h
-                        </option>
-                      ))}
-                    </select>
                   </Field>
 
                   <Field label="Comentarios (opcional)" icon={MessageSquareText} className="sm:col-span-2">
@@ -285,9 +308,14 @@ export function Booking() {
                   </Field>
 
                   <div className="sm:col-span-2">
-                    <button type="submit" className="btn btn-primary w-full !py-4">
-                      <WhatsAppIcon className="size-5" />
-                      Enviar solicitud por WhatsApp
+                    {submitError && (
+                      <p role="alert" className="mb-3 rounded-xl bg-blush-50 px-4 py-3 text-sm text-blush-600">
+                        {submitError}
+                      </p>
+                    )}
+                    <button type="submit" disabled={submitting} className="btn btn-primary w-full !py-4 disabled:opacity-70">
+                      {submitting ? <Loader2 className="size-5 animate-spin" /> : <WhatsAppIcon className="size-5" />}
+                      {submitting ? "Reservando tu horario…" : "Enviar solicitud por WhatsApp"}
                     </button>
                     <p className="mt-3 text-center text-xs text-ink-500">
                       Tu cita queda confirmada cuando te respondamos por WhatsApp.
@@ -304,6 +332,8 @@ export function Booking() {
 }
 
 type FieldProps = {
+  /** "div" cuando el contenido tiene varios controles (evita que la etiqueta active el primero). */
+  as?: "label" | "div";
   label: string;
   icon: IconType;
   error?: string;
@@ -311,9 +341,9 @@ type FieldProps = {
   children: ReactNode;
 };
 
-function Field({ label, icon: Icon, error, className, children }: FieldProps) {
+function Field({ as: Tag = "label", label, icon: Icon, error, className, children }: FieldProps) {
   return (
-    <label className={cn("block", className)}>
+    <Tag className={cn("block", className)}>
       <span className="mb-2 flex items-center gap-2 text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-ink-600">
         <Icon className="size-3.5 text-champagne-500" />
         {label}
@@ -332,6 +362,6 @@ function Field({ label, icon: Icon, error, className, children }: FieldProps) {
           </motion.span>
         )}
       </AnimatePresence>
-    </label>
+    </Tag>
   );
 }

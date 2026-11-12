@@ -67,7 +67,7 @@ export function Gallery() {
               aria-pressed={filter === cat}
               className={cn(
                 "relative shrink-0 rounded-full px-5 py-2.5 text-xs font-medium uppercase tracking-[0.15em] transition-colors",
-                filter === cat ? "text-white" : "bg-white/70 text-ink-600 hover:bg-white",
+                filter === cat ? "text-night" : "bg-nude-100/70 text-ink-600 hover:bg-nude-200",
               )}
             >
               {filter === cat && (
@@ -111,7 +111,7 @@ export function Gallery() {
                       item.position,
                     )}
                   />
-                  <span className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-ink-900/0 opacity-0 transition-all duration-500 group-hover:bg-ink-900/45 group-hover:opacity-100">
+                  <span className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-night/0 opacity-0 transition-all duration-500 group-hover:bg-night/45 group-hover:opacity-100">
                     <ZoomIn className="size-7 text-white" />
                     <span className="text-[0.65rem] font-semibold uppercase tracking-[0.25em] text-white">
                       {item.category}

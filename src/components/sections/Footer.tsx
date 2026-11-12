@@ -9,16 +9,16 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative overflow-hidden bg-ink-900 text-nude-200">
+    <footer className="relative overflow-hidden bg-night text-ink-600">
       <div className="h-px bg-gradient-to-r from-transparent via-champagne-400 to-transparent" aria-hidden />
 
       {/* Llamado a la acción */}
       <div className="container-x flex flex-col items-center justify-between gap-6 border-b border-white/10 py-12 text-center md:flex-row md:text-left">
         <div>
-          <p className="font-display text-3xl text-cream md:text-4xl">
+          <p className="font-display text-3xl text-ink-900 md:text-4xl">
             ¿Lista para tu <em className="text-gold">cambio de look</em>?
           </p>
-          <p className="mt-2 text-sm text-nude-300">Agenda hoy y déjate consentir por nuestras expertas.</p>
+          <p className="mt-2 text-sm text-ink-500">Agenda hoy y déjate consentir por nuestras expertas.</p>
         </div>
         <a href="#reservar" className="btn btn-primary shrink-0">
           Agenda tu cita
@@ -28,7 +28,7 @@ export function Footer() {
       <div className="container-x grid gap-12 py-16 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1.3fr]">
         <div>
           <Logo className="!size-28" />
-          <p className="mt-6 max-w-xs text-sm leading-relaxed text-nude-300">
+          <p className="mt-6 max-w-xs text-sm leading-relaxed text-ink-500">
             {site.tagline}. Cuidamos cada detalle para que luzcas y te sientas espectacular.
           </p>
           <SocialLinks light className="mt-6" />
@@ -99,7 +99,7 @@ export function Footer() {
       </div>
 
       <div className="border-t border-white/10">
-        <div className="container-x flex flex-col items-center justify-between gap-3 py-6 text-xs text-nude-400 md:flex-row">
+        <div className="container-x flex flex-col items-center justify-between gap-3 py-6 text-xs text-ink-500 md:flex-row">
           <p>
             © {year} {site.name}. Todos los derechos reservados.
           </p>

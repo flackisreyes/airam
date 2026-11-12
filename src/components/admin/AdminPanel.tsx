@@ -54,8 +54,8 @@ export function AdminPanel({ storageWarning, localStorage }: { storageWarning: b
   const pending = data?.appointments.filter((a) => a.status === "pending" && a.date >= data.availability.today).length ?? 0;
 
   return (
-    <div className="min-h-dvh bg-nude-50">
-      <header className="sticky top-0 z-20 border-b border-nude-200 bg-white/90 backdrop-blur">
+    <div className="min-h-dvh bg-cream">
+      <header className="sticky top-0 z-20 border-b border-nude-200 bg-nude-50/90 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
           <div>
             <Link href="/" className="font-display text-2xl text-ink-900">
@@ -98,7 +98,7 @@ export function AdminPanel({ storageWarning, localStorage }: { storageWarning: b
               <Icon className="size-4" />
               {label}
               {id === "citas" && pending > 0 && (
-                <span className="rounded-full bg-blush-500 px-2 py-0.5 text-[0.65rem] font-bold text-white">
+                <span className="rounded-full bg-blush-500 px-2 py-0.5 text-[0.65rem] font-bold text-night">
                   {pending}
                 </span>
               )}
@@ -140,7 +140,7 @@ function Notice({ children, tone = "warn" }: { children: React.ReactNode; tone?:
     <p
       className={cn(
         "mb-4 flex items-start gap-2 rounded-2xl px-4 py-3 text-sm",
-        tone === "warn" ? "bg-blush-100 text-blush-600" : "bg-champagne-100 text-champagne-600",
+        tone === "warn" ? "bg-blush-100 text-danger" : "bg-champagne-100 text-champagne-600",
       )}
     >
       <TriangleAlert className="mt-0.5 size-4 shrink-0" />

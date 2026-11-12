@@ -22,7 +22,7 @@ export function Hero() {
     >
       {/* Decoración */}
       <div className="pointer-events-none absolute -left-40 top-20 size-[28rem] rounded-full bg-blush-200/50 blur-3xl" aria-hidden />
-      <div className="pointer-events-none absolute -right-32 bottom-0 size-[26rem] rounded-full bg-champagne-200/50 blur-3xl" aria-hidden />
+      <div className="pointer-events-none absolute -right-32 bottom-0 size-[26rem] rounded-full bg-champagne-500/15 blur-3xl" aria-hidden />
 
       <div className="container-x relative grid items-center gap-14 lg:grid-cols-[1.05fr_1fr]">
         {/* Texto */}
@@ -97,14 +97,14 @@ export function Hero() {
             <motion.div style={{ y: imageY }} className="absolute inset-0 -top-[6%] h-[112%]">
               <Image
                 src={images.hero}
-                alt="Mujer con cabello hermoso en Estética Airam"
+                alt="Maquillaje y peinado profesional en Estética Airam"
                 fill
                 priority
                 sizes="(min-width: 1024px) 45vw, 90vw"
-                className="object-cover"
+                className="object-cover object-[50%_15%]"
               />
             </motion.div>
-            <div className="absolute inset-0 bg-gradient-to-t from-ink-900/25 via-transparent to-transparent" aria-hidden />
+            <div className="absolute inset-0 bg-gradient-to-t from-night/25 via-transparent to-transparent" aria-hidden />
           </div>
 
           {/* Tarjetas flotantes */}
@@ -114,7 +114,7 @@ export function Hero() {
             transition={{ duration: 0.9, delay: 0.9, ease }}
             className="absolute -left-4 bottom-16 sm:-left-10"
           >
-            <div className="animate-float flex items-center gap-3 rounded-2xl bg-white/90 px-4 py-3 shadow-xl backdrop-blur">
+            <div className="animate-float flex items-center gap-3 rounded-2xl bg-nude-50/90 px-4 py-3 shadow-xl backdrop-blur">
               <span className="grid size-10 place-items-center rounded-full bg-blush-100 text-blush-600">
                 <Gem className="size-5" />
               </span>
@@ -130,7 +130,7 @@ export function Hero() {
             transition={{ duration: 0.9, delay: 1.1, ease }}
             className="absolute -right-2 top-16 sm:-right-8"
           >
-            <div className="animate-float flex items-center gap-3 rounded-2xl bg-white/90 px-4 py-3 shadow-xl backdrop-blur [animation-delay:1.5s]">
+            <div className="animate-float flex items-center gap-3 rounded-2xl bg-nude-50/90 px-4 py-3 shadow-xl backdrop-blur [animation-delay:1.5s]">
               <span className="grid size-10 place-items-center rounded-full bg-champagne-100 text-champagne-600">
                 <MessageCircleHeart className="size-5" />
               </span>

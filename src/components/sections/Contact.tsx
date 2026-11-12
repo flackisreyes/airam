@@ -56,7 +56,7 @@ export function Contact() {
               </ul>
             </InfoCard>
 
-            <div className="rounded-3xl bg-white p-6 ring-1 ring-nude-100">
+            <div className="rounded-3xl bg-nude-50 p-6 ring-1 ring-nude-100">
               <p className="mb-4 text-[0.7rem] font-semibold uppercase tracking-[0.3em] text-ink-600">Síguenos</p>
               <SocialLinks />
             </div>
@@ -80,7 +80,7 @@ export function Contact() {
 
 function InfoCard({ icon, title, children }: { icon: React.ReactNode; title: string; children: React.ReactNode }) {
   return (
-    <div className="flex gap-5 rounded-3xl bg-white p-6 ring-1 ring-nude-100 transition-shadow duration-300 hover:shadow-lg">
+    <div className="flex gap-5 rounded-3xl bg-nude-50 p-6 ring-1 ring-nude-100 transition-shadow duration-300 hover:shadow-lg">
       <span className="grid size-12 shrink-0 place-items-center rounded-full bg-gradient-to-br from-blush-100 to-champagne-100 text-champagne-600">
         {icon}
       </span>

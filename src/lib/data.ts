@@ -35,7 +35,7 @@ export const navLinks = [
  * y usa rutas como "/images/corte.jpg".
  */
 export const images = {
-  hero: unsplash("1522337360788-8b13dee7a37e", 1400),
+  hero: "/images/inicio-airam.jpg",
   salon: unsplash("1560066984-138dadb4c035", 1200),
   salonDetail: unsplash("1521590832167-7bcbfaa6381f", 900),
   booking: unsplash("1595475884562-073c30d45670", 1200),

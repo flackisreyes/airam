@@ -33,7 +33,7 @@ export function Testimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.6, delay: (i % 3) * 0.1 }}
-              className="relative w-[85%] shrink-0 snap-center rounded-[1.75rem] bg-white p-8 shadow-[0_20px_50px_-25px_rgba(42,36,36,0.2)] ring-1 ring-nude-100 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_30px_60px_-25px_rgba(195,129,122,0.4)] md:w-auto"
+              className="relative w-[85%] shrink-0 snap-center rounded-[1.75rem] bg-nude-50 p-8 shadow-[0_20px_50px_-25px_rgba(42,36,36,0.2)] ring-1 ring-nude-100 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_30px_60px_-25px_rgba(195,129,122,0.4)] md:w-auto"
             >
               <Quote className="absolute right-7 top-7 size-10 text-blush-100" aria-hidden />
               {testimonialsAreDemo && (

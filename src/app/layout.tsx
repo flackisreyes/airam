@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     siteName: site.name,
     title: `${site.name} | ${site.tagline}`,
     description: site.description,
-    images: [{ url: images.hero, width: 1400, height: 933, alt: site.name }],
+    images: [{ url: images.hero, width: 891, height: 1600, alt: site.name }],
   },
   twitter: {
     card: "summary_large_image",
@@ -69,7 +69,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#fcf5f3",
+  themeColor: "#05060a",
   width: "device-width",
   initialScale: 1,
 };

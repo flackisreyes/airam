@@ -160,17 +160,17 @@ export function Booking() {
   return (
     <section id="reservar" className="relative bg-cream py-24 md:py-32">
       <div className="container-x">
-        <Reveal className="grid overflow-hidden rounded-[2.5rem] bg-white shadow-[0_40px_80px_-40px_rgba(42,36,36,0.35)] ring-1 ring-nude-100 lg:grid-cols-[0.9fr_1.1fr]">
+        <Reveal className="grid overflow-hidden rounded-[2.5rem] bg-nude-50 shadow-[0_40px_80px_-40px_rgba(63,224,232,0.25)] ring-1 ring-nude-100 lg:grid-cols-[0.9fr_1.1fr]">
           {/* Panel informativo */}
-          <div className="relative min-h-[340px] overflow-hidden bg-ink-900 p-8 text-cream md:p-12">
+          <div className="relative min-h-[340px] overflow-hidden bg-night p-8 text-ink-900 md:p-12">
             <Image src={images.booking} alt="" fill sizes="(min-width: 1024px) 40vw, 100vw" className="object-cover opacity-35" />
-            <div className="absolute inset-0 bg-gradient-to-br from-ink-900/90 via-ink-900/70 to-blush-600/40" />
+            <div className="absolute inset-0 bg-gradient-to-br from-night/90 via-night/70 to-champagne-500/25" />
             <div className="relative flex h-full flex-col">
               <p className="text-[0.7rem] font-semibold uppercase tracking-[0.4em] text-champagne-300">Reservaciones</p>
               <h2 className="mt-4 font-display text-4xl font-medium leading-tight md:text-5xl">
                 Agenda tu cita <em className="text-gold">en minutos</em>
               </h2>
-              <p className="mt-5 max-w-sm leading-relaxed text-nude-200">
+              <p className="mt-5 max-w-sm leading-relaxed text-ink-600">
                 Completa el formulario y envíanos tu solicitud por WhatsApp. Te confirmaremos la disponibilidad lo antes
                 posible.
               </p>
@@ -187,7 +187,7 @@ export function Booking() {
                   </li>
                 ))}
               </ul>
-              <div className="mt-auto pt-10 text-xs text-nude-300">
+              <div className="mt-auto pt-10 text-xs text-ink-500">
                 {site.hours.map((h) => (
                   <p key={h.days}>
                     <span className="text-champagne-300">{h.days}:</span> {h.time}
@@ -309,7 +309,7 @@ export function Booking() {
 
                   <div className="sm:col-span-2">
                     {submitError && (
-                      <p role="alert" className="mb-3 rounded-xl bg-blush-50 px-4 py-3 text-sm text-blush-600">
+                      <p role="alert" className="mb-3 rounded-xl bg-blush-50 px-4 py-3 text-sm text-danger">
                         {submitError}
                       </p>
                     )}
@@ -355,7 +355,7 @@ function Field({ as: Tag = "label", label, icon: Icon, error, className, childre
             initial={{ opacity: 0, y: -4 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
-            className="mt-1.5 block text-xs text-blush-600"
+            className="mt-1.5 block text-xs text-danger"
             role="alert"
           >
             {error}

@@ -43,10 +43,10 @@ export function BeforeAfter({
         />
       </div>
 
-      <span className="absolute left-4 top-4 rounded-full bg-ink-900/70 px-4 py-1.5 text-[0.65rem] font-semibold uppercase tracking-[0.25em] text-white backdrop-blur">
+      <span className="absolute left-4 top-4 rounded-full bg-night/70 px-4 py-1.5 text-[0.65rem] font-semibold uppercase tracking-[0.25em] text-white backdrop-blur">
         Antes
       </span>
-      <span className="absolute right-4 top-4 rounded-full bg-champagne-500/90 px-4 py-1.5 text-[0.65rem] font-semibold uppercase tracking-[0.25em] text-white backdrop-blur">
+      <span className="absolute right-4 top-4 rounded-full bg-champagne-500/90 px-4 py-1.5 text-[0.65rem] font-semibold uppercase tracking-[0.25em] text-night backdrop-blur">
         Después
       </span>
 

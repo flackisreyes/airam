@@ -7,39 +7,54 @@
 }
 
 @theme {
-  /* Blanco elegante */
-  --color-cream: #fffdfb;
+  /*
+   * Paleta del logo Airam: fondo negro, turquesa brillante y plateado.
+   * Se conservan los nombres antiguos (cream, nude, ink, champagne, blush)
+   * para no tocar cada componente: ahora "cream" es el fondo negro,
+   * "nude" son superficies oscuras, "ink" es el texto plateado y
+   * "champagne" es el turquesa del logo.
+   */
 
-  /* Rosa palo */
-  --color-blush-50: #fcf5f3;
-  --color-blush-100: #f8e9e6;
-  --color-blush-200: #f0d5d0;
-  --color-blush-300: #e5bab3;
-  --color-blush-400: #d69d95;
-  --color-blush-500: #c3817a;
-  --color-blush-600: #a8665f;
+  /* Fondo principal (negro del logo) */
+  --color-cream: #05060a;
 
-  /* Dorado champagne */
-  --color-champagne-100: #f7efdf;
-  --color-champagne-200: #eedfbf;
-  --color-champagne-300: #e3cc9c;
-  --color-champagne-400: #d4b47a;
-  --color-champagne-500: #c19b5c;
-  --color-champagne-600: #9f7d45;
+  /* Negro puro para secciones destacadas y velos sobre fotos */
+  --color-night: #000000;
+  --color-night-800: #0a0c12;
 
-  /* Beige y nude */
-  --color-nude-50: #faf6f1;
-  --color-nude-100: #f3ebe1;
-  --color-nude-200: #e8dacb;
-  --color-nude-300: #d7c2ab;
-  --color-nude-400: #bfa384;
+  /* Azul pizarra (el humo del fondo del logo) */
+  --color-blush-50: #0d111b;
+  --color-blush-100: #151b2b;
+  --color-blush-200: #222b42;
+  --color-blush-300: #3b4766;
+  --color-blush-400: #22c9d3;
+  --color-blush-500: #12a9b4;
+  --color-blush-600: #8fa3c7;
 
-  /* Negro suave */
-  --color-ink-500: #6b5f5f;
-  --color-ink-600: #514747;
-  --color-ink-700: #3a3232;
-  --color-ink-800: #2a2424;
-  --color-ink-900: #1d1919;
+  /* Turquesa brillante (letras "airam") */
+  --color-champagne-100: #0a2a30;
+  --color-champagne-200: #b4f8f9;
+  --color-champagne-300: #7cf0f2;
+  --color-champagne-400: #3fe0e8;
+  --color-champagne-500: #1fc6d0;
+  --color-champagne-600: #2fd6df;
+
+  /* Superficies oscuras (tarjetas, campos) */
+  --color-nude-50: #0c0e15;
+  --color-nude-100: #141824;
+  --color-nude-200: #232838;
+  --color-nude-300: #4a5168;
+  --color-nude-400: #7a8299;
+
+  /* Plateado (texto, "ERICKA REYES") */
+  --color-ink-500: #98a0b2;
+  --color-ink-600: #b4bac7;
+  --color-ink-700: #ced3dc;
+  --color-ink-800: #e4e7ee;
+  --color-ink-900: #f6f8fb;
+
+  /* Mensajes de error */
+  --color-danger: #ff8fa3;
 
   --animate-shimmer: shimmer 6s linear infinite;
   --animate-float: float 6s ease-in-out infinite;
@@ -102,7 +117,7 @@
     100deg,
     var(--color-champagne-600) 0%,
     var(--color-champagne-400) 30%,
-    var(--color-champagne-200) 50%,
+    #ffffff 50%,
     var(--color-champagne-400) 70%,
     var(--color-champagne-600) 100%
   );
@@ -139,7 +154,7 @@
 }
 
 @utility btn-primary {
-  color: white;
+  color: var(--color-night);
   background-image: linear-gradient(
     120deg,
     var(--color-champagne-600),
@@ -147,10 +162,10 @@
     var(--color-champagne-600)
   );
   background-size: 200% auto;
-  box-shadow: 0 10px 30px -10px rgb(159 125 69 / 0.6);
+  box-shadow: 0 10px 30px -10px rgb(63 224 232 / 0.45);
   &:hover {
     background-position: right center;
-    box-shadow: 0 16px 36px -12px rgb(159 125 69 / 0.75);
+    box-shadow: 0 16px 36px -12px rgb(63 224 232 / 0.65);
   }
 }
 
@@ -168,7 +183,7 @@
   width: 100%;
   border-radius: 0.875rem;
   border: 1px solid var(--color-nude-200);
-  background-color: white;
+  background-color: var(--color-nude-50);
   padding: 0.85rem 1rem;
   font-size: 0.95rem;
   color: var(--color-ink-800);
@@ -181,7 +196,7 @@
   &:focus {
     outline: none;
     border-color: var(--color-champagne-400);
-    box-shadow: 0 0 0 4px rgb(212 180 122 / 0.2);
+    box-shadow: 0 0 0 4px rgb(63 224 232 / 0.18);
   }
 }
 

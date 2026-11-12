@@ -51,7 +51,7 @@ export function WhyUs() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: "-40px" }}
                   transition={{ duration: 0.6, delay: i * 0.08 }}
-                  className="group flex items-start gap-5 rounded-2xl border border-transparent p-4 transition-all duration-300 hover:border-nude-200 hover:bg-white hover:shadow-lg"
+                  className="group flex items-start gap-5 rounded-2xl border border-transparent p-4 transition-all duration-300 hover:border-nude-200 hover:bg-nude-50 hover:shadow-lg"
                 >
                   <span className="grid size-12 shrink-0 place-items-center rounded-full bg-gradient-to-br from-blush-100 to-champagne-100 text-champagne-600 transition-transform duration-300 group-hover:scale-110">
                     <Icon className="size-5" />

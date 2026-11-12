@@ -82,7 +82,7 @@ export function AppointmentsTab({ data, reload }: { data: PanelData; reload: () 
               onClick={() => setFilter(f.id)}
               className={cn(
                 "shrink-0 rounded-full px-4 py-2 text-sm transition",
-                filter === f.id ? "bg-ink-900 text-cream" : "bg-white text-ink-600 ring-1 ring-nude-200 hover:bg-nude-100",
+                filter === f.id ? "bg-ink-900 text-cream" : "bg-nude-50 text-ink-600 ring-1 ring-nude-200 hover:bg-nude-100",
               )}
             >
               {f.label}
@@ -111,7 +111,7 @@ export function AppointmentsTab({ data, reload }: { data: PanelData; reload: () 
       </AnimatePresence>
 
       {groups.length === 0 ? (
-        <p className="rounded-3xl bg-white py-16 text-center text-sm text-ink-500 ring-1 ring-nude-100">
+        <p className="rounded-3xl bg-nude-50 py-16 text-center text-sm text-ink-500 ring-1 ring-nude-100">
           No hay citas en esta vista.
         </p>
       ) : (
@@ -183,7 +183,7 @@ function AppointmentCard({
   const status = STATUS_STYLE[appt.status];
 
   return (
-    <article className={cn("rounded-3xl bg-white p-5 shadow-sm ring-1 ring-nude-100", busy && "opacity-60")}>
+    <article className={cn("rounded-3xl bg-nude-50 p-5 shadow-sm ring-1 ring-nude-100", busy && "opacity-60")}>
       <div className="flex items-start justify-between gap-3">
         <div>
           <p className="font-display text-3xl leading-none text-ink-900">{appt.time}</p>
@@ -239,7 +239,7 @@ function AppointmentCard({
         </div>
       )}
 
-      {error && <p className="mt-3 text-sm text-blush-600">{error}</p>}
+      {error && <p className="mt-3 text-sm text-danger">{error}</p>}
 
       <div className="mt-4 flex flex-wrap gap-2 border-t border-nude-100 pt-4">
         {appt.status === "pending" && (
@@ -300,7 +300,7 @@ function Action({
         tone === "primary"
           ? "bg-ink-900 text-cream hover:bg-ink-700"
           : tone === "danger"
-            ? "text-blush-600 hover:bg-blush-50"
+            ? "text-danger hover:bg-blush-50"
             : "bg-nude-100 text-ink-700 hover:bg-nude-200",
       )}
     >
@@ -345,7 +345,7 @@ function NewAppointment({
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -8 }}
       onSubmit={submit}
-      className="mb-6 grid gap-3 rounded-3xl bg-white p-5 shadow-sm ring-1 ring-champagne-300 sm:grid-cols-2"
+      className="mb-6 grid gap-3 rounded-3xl bg-nude-50 p-5 shadow-sm ring-1 ring-champagne-300 sm:grid-cols-2"
     >
       <p className="font-display text-2xl text-ink-900 sm:col-span-2">Nueva cita</p>
       <input required placeholder="Nombre" value={f.name} onChange={set("name")} className="field" />
@@ -371,7 +371,7 @@ function NewAppointment({
         ))}
       </select>
       <input placeholder="Notas (opcional)" value={f.notes} onChange={set("notes")} className="field sm:col-span-2" />
-      {error && <p className="text-sm text-blush-600 sm:col-span-2">{error}</p>}
+      {error && <p className="text-sm text-danger sm:col-span-2">{error}</p>}
       <div className="flex gap-2 sm:col-span-2">
         <button type="submit" disabled={busy} className="btn btn-primary disabled:opacity-60">
           Guardar cita

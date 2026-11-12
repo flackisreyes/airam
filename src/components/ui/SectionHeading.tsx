@@ -39,13 +39,13 @@ export function SectionHeading({
       <h2
         className={cn(
           "font-display text-4xl font-medium leading-tight md:text-5xl",
-          light ? "text-cream" : "text-ink-900",
+          light ? "text-ink-900" : "text-ink-900",
         )}
       >
         {title}
       </h2>
       {description && (
-        <p className={cn("mt-5 text-base leading-relaxed", light ? "text-nude-200" : "text-ink-500")}>
+        <p className={cn("mt-5 text-base leading-relaxed", light ? "text-ink-600" : "text-ink-500")}>
           {description}
         </p>
       )}

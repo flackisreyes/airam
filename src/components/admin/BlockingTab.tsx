@@ -89,7 +89,7 @@ export function BlockingTab({ data, reload }: { data: PanelData; reload: () => P
         </ul>
 
         {upcomingClosed.length > 0 && (
-          <div className="rounded-3xl bg-white p-4 ring-1 ring-nude-100">
+          <div className="rounded-3xl bg-nude-50 p-4 ring-1 ring-nude-100">
             <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-ink-500">Próximos días cerrados</p>
             <div className="flex flex-wrap gap-2">
               {upcomingClosed.map((d) => (
@@ -107,7 +107,7 @@ export function BlockingTab({ data, reload }: { data: PanelData; reload: () => P
         )}
       </div>
 
-      <div className="rounded-3xl bg-white p-5 shadow-sm ring-1 ring-nude-100 md:p-6">
+      <div className="rounded-3xl bg-nude-50 p-5 shadow-sm ring-1 ring-nude-100 md:p-6">
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
             <h2 className="font-display text-3xl text-ink-900">{formatLongDate(selected)}</h2>
@@ -138,7 +138,7 @@ export function BlockingTab({ data, reload }: { data: PanelData; reload: () => P
           )}
         </div>
 
-        {error && <p className="mt-3 text-sm text-blush-600">{error}</p>}
+        {error && <p className="mt-3 text-sm text-danger">{error}</p>}
 
         {dayClosed && dayAppointments.length > 0 && (
           <p className="mt-4 rounded-2xl bg-champagne-100 px-4 py-3 text-sm text-champagne-600">

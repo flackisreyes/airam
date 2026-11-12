@@ -48,7 +48,7 @@ export function Lightbox({ items, index, onClose, onChange }: LightboxProps) {
           role="dialog"
           aria-modal="true"
           aria-label={item.alt}
-          className="fixed inset-0 z-[60] flex items-center justify-center bg-ink-900/90 p-4 backdrop-blur-md"
+          className="fixed inset-0 z-[60] flex items-center justify-center bg-night/90 p-4 backdrop-blur-md"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -98,7 +98,7 @@ export function Lightbox({ items, index, onClose, onChange }: LightboxProps) {
             <div className="relative flex-1">
               <Image src={item.src} alt={item.alt} fill sizes="100vw" className="object-contain" />
             </div>
-            <figcaption className="mt-4 text-center text-sm text-nude-200">
+            <figcaption className="mt-4 text-center text-sm text-ink-600">
               <span className="mr-2 text-champagne-300">{item.category}</span>·<span className="ml-2">{item.alt}</span>
             </figcaption>
           </motion.figure>

@@ -32,7 +32,7 @@ export function Services() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.7, delay: (i % 3) * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                className="group relative flex flex-col overflow-hidden rounded-[1.75rem] bg-white shadow-[0_20px_50px_-25px_rgba(42,36,36,0.25)] ring-1 ring-nude-100 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_30px_60px_-25px_rgba(195,129,122,0.45)]"
+                className="group relative flex flex-col overflow-hidden rounded-[1.75rem] bg-nude-50 shadow-[0_20px_50px_-25px_rgba(42,36,36,0.25)] ring-1 ring-nude-100 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_30px_60px_-25px_rgba(195,129,122,0.45)]"
               >
                 <div className="relative aspect-[4/3] overflow-hidden">
                   <Image
@@ -42,8 +42,8 @@ export function Services() {
                     sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                     className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-ink-900/50 via-ink-900/0 to-transparent opacity-70 transition-opacity duration-500 group-hover:opacity-90" />
-                  <span className="absolute left-5 top-5 grid size-12 place-items-center rounded-full bg-white/90 text-champagne-600 shadow-lg backdrop-blur transition-transform duration-500 group-hover:rotate-12">
+                  <div className="absolute inset-0 bg-gradient-to-t from-night/50 via-night/0 to-transparent opacity-70 transition-opacity duration-500 group-hover:opacity-90" />
+                  <span className="absolute left-5 top-5 grid size-12 place-items-center rounded-full bg-nude-50/90 text-champagne-600 shadow-lg backdrop-blur transition-transform duration-500 group-hover:rotate-12">
                     <Icon className="size-5" />
                   </span>
                   <span className="absolute bottom-4 right-5 font-display text-5xl italic text-white/70">

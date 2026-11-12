@@ -14,8 +14,8 @@ export const dynamic = "force-dynamic";
 export default async function AdminPage() {
   if (!isAdminConfigured() && !devLoginEnabled) {
     return (
-      <main className="grid min-h-dvh place-items-center bg-nude-50 p-6">
-        <div className="max-w-md rounded-3xl bg-white p-8 text-center shadow-sm ring-1 ring-nude-100">
+      <main className="grid min-h-dvh place-items-center bg-cream p-6">
+        <div className="max-w-md rounded-3xl bg-nude-50 p-8 text-center shadow-sm ring-1 ring-nude-100">
           <h1 className="font-display text-3xl text-ink-900">Panel sin configurar</h1>
           <p className="mt-3 text-sm text-ink-600">
             Añade la variable de entorno <code className="rounded bg-nude-100 px-1.5 py-0.5">ADMIN_PASSWORD</code> con la

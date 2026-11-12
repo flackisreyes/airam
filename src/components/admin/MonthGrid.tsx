@@ -42,7 +42,7 @@ export function MonthGrid({ selected, onSelect, minDate, decorate }: Props) {
   const label = rawLabel.charAt(0).toUpperCase() + rawLabel.slice(1);
 
   return (
-    <div className="rounded-3xl bg-white p-4 shadow-sm ring-1 ring-nude-100">
+    <div className="rounded-3xl bg-nude-50 p-4 shadow-sm ring-1 ring-nude-100">
       <div className="mb-3 flex items-center justify-between">
         <button
           type="button"

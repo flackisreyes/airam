@@ -37,7 +37,7 @@ export function WhatsAppFloat() {
                 initial={{ opacity: 0, x: 10 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 10 }}
-                className="hidden rounded-full bg-white px-4 py-2 text-sm font-medium text-ink-800 shadow-lg sm:block"
+                className="hidden rounded-full bg-nude-50 px-4 py-2 text-sm font-medium text-ink-800 shadow-lg sm:block"
               >
                 ¿Agendamos tu cita? ✨
               </motion.span>

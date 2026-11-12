@@ -27,7 +27,7 @@ export function Logo({ size = "md", priority = false, className }: LogoProps) {
       sizes={s.sizes}
       priority={priority}
       className={cn(
-        "rounded-full shadow-[0_10px_30px_-10px_rgba(29,25,25,0.55)] ring-1 ring-champagne-300/60",
+        "rounded-full shadow-[0_0_40px_-8px_rgba(63,224,232,0.55)] ring-1 ring-champagne-300/60",
         s.className,
         className,
       )}

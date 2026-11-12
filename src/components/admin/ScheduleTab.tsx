@@ -51,7 +51,7 @@ export function ScheduleTab({ schedule, reload }: { schedule: Schedule; reload: 
 
   return (
     <form onSubmit={submit} className="grid gap-6 lg:grid-cols-2">
-      <div className="space-y-6 rounded-3xl bg-white p-6 shadow-sm ring-1 ring-nude-100">
+      <div className="space-y-6 rounded-3xl bg-nude-50 p-6 shadow-sm ring-1 ring-nude-100">
         <div>
           <h2 className="font-display text-2xl text-ink-900">Días que abres</h2>
           <p className="text-sm text-ink-500">Los días apagados no aparecerán disponibles en la web.</p>
@@ -121,14 +121,14 @@ export function ScheduleTab({ schedule, reload }: { schedule: Schedule; reload: 
           </Labeled>
         </div>
 
-        {error && <p className="text-sm text-blush-600">{error}</p>}
+        {error && <p className="text-sm text-danger">{error}</p>}
         <button type="submit" disabled={saving} className="btn btn-primary w-full disabled:opacity-60">
           {saving ? <Loader2 className="size-4 animate-spin" /> : saved && <CheckCircle2 className="size-4" />}
           {saved ? "Guardado" : "Guardar horario"}
         </button>
       </div>
 
-      <div className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-nude-100">
+      <div className="rounded-3xl bg-nude-50 p-6 shadow-sm ring-1 ring-nude-100">
         <h2 className="font-display text-2xl text-ink-900">Vista previa</h2>
         <p className="text-sm text-ink-500">Horas que verán tus clientas cada día abierto ({preview.length}).</p>
         <div className="mt-4 grid grid-cols-4 gap-2 sm:grid-cols-5">

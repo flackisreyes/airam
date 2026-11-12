@@ -58,8 +58,8 @@ export function SocialLinks({ light = false, className }: { light?: boolean; cla
             className={cn(
               "grid size-11 place-items-center rounded-full border transition-all duration-300 hover:-translate-y-1",
               light
-                ? "border-champagne-400/40 text-champagne-200 hover:bg-champagne-400 hover:text-ink-900"
-                : "border-champagne-400/60 text-champagne-600 hover:bg-champagne-500 hover:text-white",
+                ? "border-champagne-400/40 text-champagne-200 hover:bg-champagne-400 hover:text-night"
+                : "border-champagne-400/60 text-champagne-600 hover:bg-champagne-500 hover:text-night",
             )}
           >
             <Icon className="size-5" />

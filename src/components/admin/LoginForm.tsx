@@ -46,8 +46,8 @@ export function LoginForm({
   };
 
   return (
-    <main className="grid min-h-dvh place-items-center bg-nude-50 p-6">
-      <form onSubmit={onSubmit} className="w-full max-w-sm rounded-3xl bg-white p-8 shadow-sm ring-1 ring-nude-100">
+    <main className="grid min-h-dvh place-items-center bg-cream p-6">
+      <form onSubmit={onSubmit} className="w-full max-w-sm rounded-3xl bg-nude-50 p-8 shadow-sm ring-1 ring-nude-100">
         <span className="mx-auto grid size-12 place-items-center rounded-full bg-champagne-100 text-champagne-600">
           <LockKeyhole className="size-5" />
         </span>
@@ -96,7 +96,7 @@ export function LoginForm({
           </>
         )}
         {error && (
-          <p role="alert" className="mt-3 text-center text-sm text-blush-600">
+          <p role="alert" className="mt-3 text-center text-sm text-danger">
             {error}
           </p>
         )}

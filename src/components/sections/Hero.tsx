@@ -92,54 +92,54 @@ export function Hero() {
           transition={{ duration: 1.2, delay: 0.2, ease }}
           className="relative mx-auto w-full max-w-md lg:max-w-none"
         >
-          <div className="absolute -inset-3 translate-x-4 translate-y-4 rounded-t-full rounded-b-[2rem] border border-champagne-400/70" aria-hidden />
-          <div className="relative aspect-[4/5] overflow-hidden rounded-t-full rounded-b-[2rem] bg-nude-200 shadow-2xl shadow-blush-300/40">
-            <motion.div style={{ y: imageY }} className="absolute inset-0 -top-[6%] h-[112%]">
-              <Image
-                src={images.hero}
-                alt="Maquillaje y peinado profesional en Estética Airam"
-                fill
-                priority
-                sizes="(min-width: 1024px) 45vw, 90vw"
-                className="object-cover object-[50%_15%]"
-              />
-            </motion.div>
-            <div className="absolute inset-0 bg-gradient-to-t from-night/25 via-transparent to-transparent" aria-hidden />
+          <div className="relative">
+            <div className="absolute -inset-3 translate-x-4 translate-y-4 rounded-t-full rounded-b-[2rem] border border-champagne-400/70" aria-hidden />
+            <div className="relative aspect-[4/5] overflow-hidden rounded-t-full rounded-b-[2rem] bg-nude-200 shadow-2xl shadow-blush-300/40">
+              <motion.div style={{ y: imageY }} className="absolute inset-0 -top-[6%] h-[112%]">
+                <Image
+                  src={images.hero}
+                  alt="Maquillaje y peinado profesional en Estética Airam"
+                  fill
+                  priority
+                  sizes="(min-width: 1024px) 45vw, 90vw"
+                  className="object-cover object-[50%_15%]"
+                />
+              </motion.div>
+              <div className="absolute inset-0 bg-gradient-to-t from-night/25 via-transparent to-transparent" aria-hidden />
+            </div>
           </div>
 
-          {/* Tarjetas flotantes */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.9, delay: 0.9, ease }}
-            className="absolute -left-4 bottom-16 sm:-left-10"
-          >
-            <div className="animate-float flex items-center gap-3 rounded-2xl bg-nude-50/90 px-4 py-3 shadow-xl backdrop-blur">
-              <span className="grid size-10 place-items-center rounded-full bg-blush-100 text-blush-600">
+          {/* Tarjetas debajo de la foto */}
+          <div className="mt-12 grid gap-3 sm:grid-cols-2">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, delay: 0.9, ease }}
+              className="flex items-center gap-3 rounded-2xl bg-nude-50/90 px-4 py-3 shadow-xl ring-1 ring-nude-200 backdrop-blur"
+            >
+              <span className="grid size-10 shrink-0 place-items-center rounded-full bg-blush-100 text-blush-600">
                 <Gem className="size-5" />
               </span>
               <span className="text-left">
                 <span className="block font-display text-lg leading-none text-ink-900">Calidad premium</span>
                 <span className="text-xs text-ink-500">Marcas profesionales</span>
               </span>
-            </div>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.9, delay: 1.1, ease }}
-            className="absolute -right-2 top-16 sm:-right-8"
-          >
-            <div className="animate-float flex items-center gap-3 rounded-2xl bg-nude-50/90 px-4 py-3 shadow-xl backdrop-blur [animation-delay:1.5s]">
-              <span className="grid size-10 place-items-center rounded-full bg-champagne-100 text-champagne-600">
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, delay: 1.1, ease }}
+              className="flex items-center gap-3 rounded-2xl bg-nude-50/90 px-4 py-3 shadow-xl ring-1 ring-nude-200 backdrop-blur"
+            >
+              <span className="grid size-10 shrink-0 place-items-center rounded-full bg-champagne-100 text-champagne-600">
                 <MessageCircleHeart className="size-5" />
               </span>
               <span className="text-left">
                 <span className="block font-display text-lg leading-none text-ink-900">Agenda fácil</span>
                 <span className="text-xs text-ink-500">Directo por WhatsApp</span>
               </span>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </motion.div>
       </div>
 

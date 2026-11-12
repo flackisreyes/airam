@@ -1,0 +1,193 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-display: var(--ff-display), ui-serif, Georgia, serif;
+  --font-sans: var(--ff-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-script: var(--ff-script), cursive;
+}
+
+@theme {
+  /* Blanco elegante */
+  --color-cream: #fffdfb;
+
+  /* Rosa palo */
+  --color-blush-50: #fcf5f3;
+  --color-blush-100: #f8e9e6;
+  --color-blush-200: #f0d5d0;
+  --color-blush-300: #e5bab3;
+  --color-blush-400: #d69d95;
+  --color-blush-500: #c3817a;
+  --color-blush-600: #a8665f;
+
+  /* Dorado champagne */
+  --color-champagne-100: #f7efdf;
+  --color-champagne-200: #eedfbf;
+  --color-champagne-300: #e3cc9c;
+  --color-champagne-400: #d4b47a;
+  --color-champagne-500: #c19b5c;
+  --color-champagne-600: #9f7d45;
+
+  /* Beige y nude */
+  --color-nude-50: #faf6f1;
+  --color-nude-100: #f3ebe1;
+  --color-nude-200: #e8dacb;
+  --color-nude-300: #d7c2ab;
+  --color-nude-400: #bfa384;
+
+  /* Negro suave */
+  --color-ink-500: #6b5f5f;
+  --color-ink-600: #514747;
+  --color-ink-700: #3a3232;
+  --color-ink-800: #2a2424;
+  --color-ink-900: #1d1919;
+
+  --animate-shimmer: shimmer 6s linear infinite;
+  --animate-float: float 6s ease-in-out infinite;
+
+  @keyframes shimmer {
+    to {
+      background-position: 200% center;
+    }
+  }
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-cream font-sans text-ink-700 antialiased;
+  }
+
+  section[id] {
+    scroll-margin-top: 5rem;
+  }
+
+  ::selection {
+    @apply bg-blush-200 text-ink-900;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+/* Contenedor del sitio */
+@utility container-x {
+  width: 100%;
+  max-width: 80rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+  @media (width >= 768px) {
+    padding-inline: 2rem;
+  }
+}
+
+/* Texto con degradado dorado champagne */
+@utility text-gold {
+  background-image: linear-gradient(
+    100deg,
+    var(--color-champagne-600) 0%,
+    var(--color-champagne-400) 30%,
+    var(--color-champagne-200) 50%,
+    var(--color-champagne-400) 70%,
+    var(--color-champagne-600) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Botones */
+@utility btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  padding: 0.95rem 1.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background-color 0.3s ease,
+    color 0.3s ease;
+  &:hover {
+    transform: translateY(-2px);
+  }
+  &:focus-visible {
+    outline: 2px solid var(--color-champagne-500);
+    outline-offset: 3px;
+  }
+}
+
+@utility btn-primary {
+  color: white;
+  background-image: linear-gradient(
+    120deg,
+    var(--color-champagne-600),
+    var(--color-champagne-400),
+    var(--color-champagne-600)
+  );
+  background-size: 200% auto;
+  box-shadow: 0 10px 30px -10px rgb(159 125 69 / 0.6);
+  &:hover {
+    background-position: right center;
+    box-shadow: 0 16px 36px -12px rgb(159 125 69 / 0.75);
+  }
+}
+
+@utility btn-outline {
+  color: var(--color-ink-800);
+  border: 1px solid var(--color-ink-800);
+  &:hover {
+    background-color: var(--color-ink-800);
+    color: var(--color-cream);
+  }
+}
+
+/* Campos de formulario */
+@utility field {
+  width: 100%;
+  border-radius: 0.875rem;
+  border: 1px solid var(--color-nude-200);
+  background-color: white;
+  padding: 0.85rem 1rem;
+  font-size: 0.95rem;
+  color: var(--color-ink-800);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+  &::placeholder {
+    color: var(--color-nude-400);
+  }
+  &:focus {
+    outline: none;
+    border-color: var(--color-champagne-400);
+    box-shadow: 0 0 0 4px rgb(212 180 122 / 0.2);
+  }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}

@@ -6,7 +6,7 @@ export const site = {
   name: "Estética Airam",
   tagline: "Resalta tu belleza, descubre tu mejor versión",
   description:
-    "Estética Airam en Tarandacuao, Guanajuato: cortes, colorimetría, balayage, peinados, maquillaje profesional, tratamientos capilares, alaciados, manicure y pedicure. Agenda tu cita por WhatsApp.",
+    "Estética Airam en Tarandacuao, Guanajuato: cortes, colorimetría, balayage, peinados, maquillaje profesional, alaciados, manicure y pedicure. Agenda tu cita por WhatsApp.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.esteticaairam.com",
   locale: "es_MX",
 

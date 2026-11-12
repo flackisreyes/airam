@@ -43,7 +43,6 @@ export const metadata: Metadata = {
     "colorimetría",
     "peinados para eventos",
     "maquillaje profesional",
-    "tratamientos capilares",
     "alaciado",
     "keratina",
     "manicure",

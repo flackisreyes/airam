@@ -2,8 +2,6 @@ import {
   Award,
   Brush,
   Crown,
-  Droplets,
-  Flower2,
   Gem,
   HeartHandshake,
   Palette,
@@ -96,14 +94,6 @@ export const services: Service[] = [
     icon: Brush,
   },
   {
-    id: "tratamientos-capilares",
-    title: "Tratamientos capilares",
-    description:
-      "Hidratación profunda, reconstrucción y botox capilar para un cabello sano y radiante.",
-    image: unsplash("1527799820374-dcf8d9d4a388", 800),
-    icon: Droplets,
-  },
-  {
     id: "alaciados",
     title: "Alaciados",
     description:
@@ -118,14 +108,6 @@ export const services: Service[] = [
       "Uñas impecables: gelish, acrílico, diseños personalizados y spa para manos y pies.",
     image: unsplash("1604654894610-df63bc536371", 800),
     icon: Hand,
-  },
-  {
-    id: "belleza",
-    title: "Cuidado y tratamientos de belleza",
-    description:
-      "Faciales, diseño de cejas, pestañas y rituales de cuidado para consentir tu piel.",
-    image: unsplash("1570172619644-dfd03ed5d881", 800),
-    icon: Flower2,
   },
 ];
 

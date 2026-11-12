@@ -119,7 +119,7 @@ function demoSeed(): Record<string, unknown> {
     [1, "15:00", "Sofía Hernández", "5545678901", "Tintes y colorimetría", "pending", ""],
     [2, "14:00", "Valeria Gómez", "5556789012", "Alaciados", "pending", "Cabello largo"],
     [3, "18:00", "Ana Martínez", "5567890123", "Peinados para eventos", "cancelled", "Canceló por WhatsApp"],
-    [4, "12:30", "Lucía Ramírez", "5578901234", "Tratamientos capilares", "confirmed", ""],
+    [4, "12:30", "Lucía Ramírez", "5578901234", "Manicure y pedicure", "confirmed", ""],
   ];
   const db: Record<string, unknown> = {};
   const appts: Record<string, unknown> = {};

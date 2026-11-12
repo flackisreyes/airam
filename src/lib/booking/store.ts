@@ -90,4 +90,67 @@ function fileStore(): Store {
   };
 }
 
-export const store: Store = isPersistentStore ? redisStore() : fileStore();
+/**
+ * Modo demostración: en Vercel sin base de datos todo vive en memoria.
+ * Arranca con citas de ejemplo y se reinicia cuando Vercel apaga el servidor
+ * (tras un rato sin visitas o con cada nuevo despliegue).
+ */
+export const isDemoMode = !isPersistentStore && Boolean(process.env.VERCEL);
+
+function demoSeed(): Record<string, unknown> {
+  const fmt = (d: Date) =>
+    new Intl.DateTimeFormat("en-CA", {
+      timeZone: "America/Mexico_City",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    }).format(d);
+  // Próximos 5 días abiertos (sin domingos) a partir de hoy.
+  const days: string[] = [];
+  for (let i = 0; days.length < 5; i++) {
+    const iso = fmt(new Date(Date.now() + i * 86_400_000));
+    if (new Date(`${iso}T12:00:00Z`).getUTCDay() !== 0) days.push(iso);
+  }
+  type Row = [number, string, string, string, string, "pending" | "confirmed" | "cancelled", string];
+  const sample: Row[] = [
+    [0, "13:00", "María López", "5512345678", "Cortes de cabello", "confirmed", ""],
+    [0, "16:30", "Fernanda Ruiz", "5523456789", "Balayage y mechas", "pending", "Quiere tonos cenizos"],
+    [1, "12:00", "Daniela Torres", "5534567890", "Maquillaje profesional", "confirmed", "Para boda a las 17:00"],
+    [1, "15:00", "Sofía Hernández", "5545678901", "Tintes y colorimetría", "pending", ""],
+    [2, "14:00", "Valeria Gómez", "5556789012", "Alaciados", "pending", "Cabello largo"],
+    [3, "18:00", "Ana Martínez", "5567890123", "Peinados para eventos", "cancelled", "Canceló por WhatsApp"],
+    [4, "12:30", "Lucía Ramírez", "5578901234", "Tratamientos capilares", "confirmed", ""],
+  ];
+  const db: Record<string, unknown> = {};
+  const appts: Record<string, unknown> = {};
+  sample.forEach(([day, time, name, phone, service, status, notes], i) => {
+    const id = `demo-${i + 1}`;
+    const date = days[day];
+    appts[id] = { id, name, phone, service, date, time, notes, status, createdAt: new Date().toISOString() };
+    if (status !== "cancelled") db[`airam:slot:${date}:${time}`] = id;
+  });
+  db["airam:appointments"] = appts;
+  return db;
+}
+
+function memoryStore(): Store {
+  const g = globalThis as unknown as { __airamDemo?: Record<string, unknown> };
+  const db = (g.__airamDemo ??= demoSeed());
+  const hash = (k: string) => (db[k] ??= {}) as Record<string, unknown>;
+  return {
+    get: async <T,>(k: string) => (db[k] as T) ?? null,
+    set: async (k, v) => void (db[k] = v),
+    setNX: async (k, v) => {
+      if (k in db) return false;
+      db[k] = v;
+      return true;
+    },
+    del: async (k) => void delete db[k],
+    hget: async <T,>(k: string, f: string) => ((db[k] as Record<string, T> | undefined)?.[f] as T) ?? null,
+    hset: async (k, f, v) => void (hash(k)[f] = v),
+    hdel: async (k, f) => void delete hash(k)[f],
+    hgetall: async <T,>(k: string) => ({ ...((db[k] as Record<string, T>) ?? {}) }),
+  };
+}
+
+export const store: Store = isPersistentStore ? redisStore() : isDemoMode ? memoryStore() : fileStore();

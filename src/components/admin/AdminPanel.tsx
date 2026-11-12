@@ -110,8 +110,8 @@ export function AdminPanel({ storageWarning, localStorage }: { storageWarning: b
       <main className="mx-auto max-w-6xl px-4 py-6">
         {storageWarning && (
           <Notice>
-            No hay base de datos conectada. Conecta Upstash Redis en Vercel (Storage → Upstash) para que las citas y los
-            cambios se guarden.
+            Modo demostración: las citas son de ejemplo. Puedes probar todo, pero los cambios se borran cuando Vercel
+            reinicia el servidor.
           </Notice>
         )}
         {localStorage && (

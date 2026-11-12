@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { AdminPanel } from "@/components/admin/AdminPanel";
 import { LoginForm } from "@/components/admin/LoginForm";
 import { devLoginEnabled, isAdminConfigured, isAuthenticated } from "@/lib/booking/auth";
-import { isPersistentStore } from "@/lib/booking/store";
+import { isDemoMode, isPersistentStore } from "@/lib/booking/store";
 
 export const metadata: Metadata = {
   title: "Panel de administración",
@@ -28,8 +28,7 @@ export default async function AdminPage() {
   }
 
   if (!(await isAuthenticated()))
-    return <LoginForm devLogin={devLoginEnabled} passwordEnabled={isAdminConfigured()} />;
+    return <LoginForm devLogin={devLoginEnabled} passwordEnabled={isAdminConfigured()} demo={isDemoMode} />;
 
-  const onVercel = Boolean(process.env.VERCEL);
-  return <AdminPanel storageWarning={!isPersistentStore && onVercel} localStorage={!isPersistentStore && !onVercel} />;
+  return <AdminPanel storageWarning={isDemoMode} localStorage={!isPersistentStore && !isDemoMode} />;
 }

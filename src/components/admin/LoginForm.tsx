@@ -4,7 +4,15 @@ import { Loader2, LockKeyhole } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { type FormEvent, useState } from "react";
 
-export function LoginForm({ devLogin, passwordEnabled }: { devLogin: boolean; passwordEnabled: boolean }) {
+export function LoginForm({
+  devLogin,
+  passwordEnabled,
+  demo = false,
+}: {
+  devLogin: boolean;
+  passwordEnabled: boolean;
+  demo?: boolean;
+}) {
   const router = useRouter();
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -78,10 +86,12 @@ export function LoginForm({ devLogin, passwordEnabled }: { devLogin: boolean; pa
               disabled={loading}
               className="btn btn-outline mt-3 w-full disabled:opacity-60"
             >
-              Entrar sin contraseña
+              {demo ? "Entrar a la demostración" : "Entrar sin contraseña"}
             </button>
             <p className="mt-2 text-center text-[0.7rem] text-ink-500">
-              Solo disponible en tu ordenador. En la web publicada no aparece.
+              {demo
+                ? "Modo demostración: los datos son de ejemplo y se reinician solos."
+                : "Solo disponible en tu ordenador. En la web publicada no aparece."}
             </p>
           </>
         )}

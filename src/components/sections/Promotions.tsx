@@ -47,7 +47,7 @@ export function Promotions() {
                     alt={promo.title}
                     fill
                     sizes="(min-width: 1024px) 33vw, 100vw"
-                    className="object-cover opacity-90 transition-transform duration-700 group-hover:scale-110"
+                    className="object-cover object-[50%_30%] opacity-90 transition-transform duration-700 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-night-800 via-night-800/20 to-transparent" />
                   <span className="absolute left-5 top-5 inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-blush-400 to-blush-500 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-night shadow-lg">

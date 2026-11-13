@@ -13,7 +13,6 @@ import {
   Hand,
   type LucideIcon,
 } from "lucide-react";
-import { unsplash } from "./utils";
 
 /* ───────────────────────── Navegación ───────────────────────── */
 
@@ -28,19 +27,26 @@ export const navLinks = [
 ] as const;
 
 /* ───────────────────────── Imágenes ─────────────────────────
- * Fotografías de stock (Unsplash) de referencia.
+ * Fotografías reales del salón (carpeta recursos).
  * Sustitúyelas por fotos reales del salón: colócalas en /public/images
  * y usa rutas como "/images/corte.jpg".
  */
 export const images = {
   hero: "/images/inicio-airam.jpg",
-  salon: unsplash("1560066984-138dadb4c035", 1200),
-  salonDetail: unsplash("1521590832167-7bcbfaa6381f", 900),
-  booking: unsplash("1595475884562-073c30d45670", 1200),
+  salon: "/images/trabajos/salon-peinado-ondas.jpg",
+  salonDetail: "/images/trabajos/salon-trabajando.jpg",
+  booking: "/images/trabajos/maquillaje-elegante.jpg",
   // Antes y después: deben ser fotos de la MISMA clienta.
   before: "/images/antes-cabello.jpg", // foto real del salón
   after: "/images/despues-cabello.jpg", // foto real del salón
 };
+
+/* Fotos del local, para la franja "Conoce nuestro espacio". */
+export const salonSpace = [
+  { src: "/images/salon/salon-recepcion.jpg", alt: "Recepción de Estética Airam con el letrero de Ericka Reyes", position: "object-center" },
+  { src: "/images/salon/salon-espejo.jpg", alt: "Tocador con espejo iluminado y sillón profesional", position: "object-center" },
+  { src: "/images/salon/salon-tocador.jpg", alt: "Área de trabajo con mural de maquillaje en la pared", position: "object-top" },
+];
 
 /* ───────────────────────── Servicios ───────────────────────── */
 
@@ -58,7 +64,7 @@ export const services: Service[] = [
     title: "Cortes de cabello",
     description:
       "Cortes a la medida de tu rostro y estilo: desde puntas perfectas hasta un cambio de look total.",
-    image: unsplash("1562322140-8baeececf3df", 800),
+    image: "/images/trabajos/mechas-castano-espalda.jpg",
     icon: Scissors,
   },
   {
@@ -66,7 +72,7 @@ export const services: Service[] = [
     title: "Tintes y colorimetría",
     description:
       "Diagnóstico de color profesional para lograr el tono ideal, brillante y duradero.",
-    image: unsplash("1580618672591-eb180b1a973f", 800),
+    image: "/images/trabajos/mechas-castano-lacio.jpg",
     icon: Palette,
   },
   {
@@ -74,7 +80,7 @@ export const services: Service[] = [
     title: "Balayage y mechas",
     description:
       "Iluminaciones naturales, babylights y balayage con técnicas que cuidan la fibra capilar.",
-    image: unsplash("1633681926022-84c23e8cb2d6", 800),
+    image: "/images/trabajos/cambio-look-rubio.jpg",
     icon: Sparkles,
   },
   {
@@ -82,7 +88,7 @@ export const services: Service[] = [
     title: "Peinados para eventos",
     description:
       "Recogidos, ondas y trenzas para bodas, XV años, graduaciones y ocasiones especiales.",
-    image: unsplash("1519699047748-de8e457a634e", 800),
+    image: "/images/trabajos/coleta-ondas.jpg",
     icon: Crown,
   },
   {
@@ -90,7 +96,7 @@ export const services: Service[] = [
     title: "Maquillaje profesional",
     description:
       "Maquillaje social, de novia y de noche con productos de alta gama y acabado impecable.",
-    image: unsplash("1487412947147-5cebf100ffc2", 800),
+    image: "/images/trabajos/maquillaje-plata.jpg",
     icon: Brush,
   },
   {
@@ -98,7 +104,7 @@ export const services: Service[] = [
     title: "Alaciados",
     description:
       "Alaciado permanente, keratina y nanoplastia para un liso sedoso, sin frizz y fácil de peinar.",
-    image: unsplash("1595476108010-b4d1f102b1b1", 800),
+    image: "/images/trabajos/balayage-cenizo.jpg",
     icon: Waves,
   },
   {
@@ -106,7 +112,7 @@ export const services: Service[] = [
     title: "Manicure y pedicure",
     description:
       "Uñas impecables: gelish, acrílico, diseños personalizados y spa para manos y pies.",
-    image: unsplash("1604654894610-df63bc536371", 800),
+    image: "/images/trabajos/unas-frances-dorado.jpg",
     icon: Hand,
   },
 ];
@@ -119,7 +125,6 @@ export const galleryCategories = [
   "Diseños de cabello",
   "Peinados",
   "Maquillaje",
-  "Tratamientos",
   "Uñas",
 ] as const;
 
@@ -134,25 +139,32 @@ export type GalleryItem = {
   position?: string;
 };
 
+/** Todas son fotos reales del salón (carpeta recursos). Son verticales, por eso van en formato alto. */
+const t = "/images/trabajos";
 export const gallery: GalleryItem[] = [
-  // ── Fotos reales del salón (carpeta recursos) ──
-  { src: "/images/trabajos/balayage-rubio.jpg", alt: "Balayage rubio con alaciado", category: "Diseños de cabello", tall: true, position: "object-top" },
-  { src: "/images/trabajos/maquillaje-peinado-ondas.jpg", alt: "Maquillaje con delineado y peinado de ondas", category: "Maquillaje", tall: true, position: "object-top" },
+  { src: `${t}/cambio-look-rubio.jpg`, alt: "Cambio de look a rubio con mechas largas", category: "Cambios de look", tall: true, position: "object-top" },
+  { src: `${t}/maquillaje-plata.jpg`, alt: "Maquillaje con sombra plateada y ondas", category: "Maquillaje", tall: true, position: "object-top" },
+  { src: `${t}/coleta-ondas.jpg`, alt: "Coleta alta con ondas definidas", category: "Peinados", tall: true, position: "object-top" },
+  { src: `${t}/unas-frances-dorado.jpg`, alt: "Uñas almendradas con francés dorado", category: "Uñas", tall: true },
+  { src: `${t}/mechas-rubias-largo.jpg`, alt: "Mechas rubias en cabello largo y lacio", category: "Diseños de cabello", tall: true, position: "object-top" },
+  { src: `${t}/maquillaje-vainilla.jpg`, alt: "Maquillaje vainilla con brillo dorado", category: "Maquillaje", tall: true, position: "object-top" },
+  { src: `${t}/recogido-maquillaje.jpg`, alt: "Recogido con rizos y maquillaje de noche", category: "Peinados", tall: true, position: "object-top" },
+  { src: `${t}/mechas-castano-lacio.jpg`, alt: "Mechas sobre castaño con alaciado", category: "Cambios de look", tall: true, position: "object-top" },
+  { src: `${t}/maquillaje-ojo-detalle.jpg`, alt: "Detalle de ojo ahumado en tonos morados", category: "Maquillaje", tall: true },
+  { src: `${t}/balayage-cenizo.jpg`, alt: "Balayage cenizo con acabado lacio", category: "Diseños de cabello", tall: true, position: "object-top" },
+  { src: `${t}/unas-dorado-verde.jpg`, alt: "Uñas con glitter dorado y verde", category: "Uñas", tall: true },
+  { src: `${t}/maquillaje-rosa.jpg`, alt: "Maquillaje con sombra rosa y labios fucsia", category: "Maquillaje", tall: true, position: "object-top" },
+  { src: `${t}/salon-peinado-ondas.jpg`, alt: "Peinado de ondas en el salón Airam", category: "Peinados", tall: true },
+  { src: `${t}/maquillaje-natural.jpg`, alt: "Maquillaje natural con delineado", category: "Maquillaje", tall: true, position: "object-top" },
+  { src: `${t}/mechas-castano-espalda.jpg`, alt: "Mechas iluminadas en castaño oscuro", category: "Diseños de cabello", tall: true, position: "object-top" },
+  { src: `${t}/maquillaje-dorado-glitter.jpg`, alt: "Maquillaje dorado con glitter y labios rojos", category: "Maquillaje", tall: true, position: "object-top" },
   { src: "/images/despues-cabello.jpg", alt: "Cambio de look: mechas rubias y alaciado", category: "Cambios de look", tall: true, position: "object-top" },
-  { src: "/images/trabajos/unas-almendra-flores.jpg", alt: "Uñas almendradas con francés y flores secas", category: "Uñas", tall: true },
-  // ── Fotos de referencia (stock): sustituir por fotos reales ──
-  { src: unsplash("1492106087820-71f1a00d2b11", 1200), alt: "Cambio de look con cabello largo y brillante", category: "Cambios de look", tall: true },
-  { src: unsplash("1516975080664-ed2fc6a32937", 1200), alt: "Maquillaje profesional de noche", category: "Maquillaje" },
-  { src: unsplash("1559599101-f09722fb4948", 1200), alt: "Resultado de tratamiento capilar", category: "Tratamientos" },
-  { src: unsplash("1526045478516-99145907023c", 1200), alt: "Diseño de cabello con ondas suaves", category: "Diseños de cabello", tall: true },
-  { src: unsplash("1519415510236-718bdfcd89c8", 1200), alt: "Peinado elegante para evento", category: "Peinados" },
-  { src: unsplash("1512496015851-a90fb38ba796", 1200), alt: "Maquillaje natural y luminoso", category: "Maquillaje", tall: true },
-  { src: unsplash("1599351431202-1e0f0137899a", 1200), alt: "Alaciado con acabado sedoso", category: "Tratamientos" },
-  { src: unsplash("1531123897727-8f129e1688ce", 1200), alt: "Nuevo estilo y color de cabello", category: "Cambios de look" },
-  { src: unsplash("1610992015732-2449b76344bc", 1200), alt: "Detalle de manicure", category: "Uñas" },
-  { src: unsplash("1508214751196-bcfd4ca60f91", 1200), alt: "Diseño de cabello con movimiento", category: "Diseños de cabello" },
-  { src: unsplash("1515377905703-c4788e51af15", 1200), alt: "Peinado y estilo para sesión", category: "Peinados", tall: true },
-  { src: unsplash("1596462502278-27bfdc403348", 1200), alt: "Productos y pinceles de maquillaje", category: "Maquillaje" },
+  { src: `${t}/maquillaje-elegante.jpg`, alt: "Maquillaje elegante con labios vino", category: "Maquillaje", tall: true, position: "object-top" },
+  { src: `${t}/balayage-rubio.jpg`, alt: "Balayage rubio con alaciado", category: "Diseños de cabello", tall: true, position: "object-top" },
+  { src: `${t}/maquillaje-dorado-suave.jpg`, alt: "Maquillaje dorado suave", category: "Maquillaje", tall: true, position: "object-top" },
+  { src: `${t}/unas-almendra-flores.jpg`, alt: "Uñas almendradas con francés y flores secas", category: "Uñas", tall: true },
+  { src: `${t}/maquillaje-peinado-ondas.jpg`, alt: "Maquillaje con delineado y peinado de ondas", category: "Maquillaje", tall: true, position: "object-top" },
+  { src: `${t}/salon-trabajando.jpg`, alt: "Alaciado en el salón Airam", category: "Peinados", tall: true },
 ];
 
 /* ───────────────────────── ¿Por qué elegirnos? ───────────────────────── */
@@ -250,14 +262,14 @@ export const promotions: Promotion[] = [
     title: "Martes de color",
     description: "Descuento especial en tintes y colorimetría todos los martes.",
     includes: ["Diagnóstico de color", "Tinte completo o retoque", "Tratamiento de brillo"],
-    image: unsplash("1580618672591-eb180b1a973f", 900),
+    image: "/images/trabajos/mechas-rubias-largo.jpg",
   },
   {
     badge: "Paquete Novia",
     title: "Día de novia",
     description: "Luce radiante en tu gran día con un paquete completo de belleza.",
     includes: ["Prueba de peinado y maquillaje", "Peinado y maquillaje del evento", "Manicure de regalo"],
-    image: unsplash("1519699047748-de8e457a634e", 900),
+    image: "/images/trabajos/recogido-maquillaje.jpg",
     featured: true,
   },
   {
@@ -265,6 +277,6 @@ export const promotions: Promotion[] = [
     title: "Manos y pies",
     description: "Manicure y pedicure spa con precio especial al reservarlos juntos.",
     includes: ["Manicure spa", "Pedicure spa", "Esmaltado en gel"],
-    image: unsplash("1519014816548-bf5fe059798b", 900),
+    image: "/images/trabajos/unas-dorado-verde.jpg",
   },
 ];

@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Logo } from "@/components/ui/Logo";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { images, reasons } from "@/lib/data";
+import { images, reasons, salonSpace } from "@/lib/data";
 
 export function WhyUs() {
   return (
@@ -65,6 +65,35 @@ export function WhyUs() {
             })}
           </ul>
         </div>
+      </div>
+
+      {/* Conoce nuestro espacio */}
+      <div className="container-x mt-28 md:mt-36">
+        <Reveal className="text-center">
+          <p className="text-[0.7rem] font-semibold uppercase tracking-[0.4em] text-champagne-600">Nuestro salón</p>
+          <h3 className="mt-3 font-display text-4xl font-medium text-ink-900">
+            Conoce <em className="text-gold">nuestro espacio</em>
+          </h3>
+          <p className="mx-auto mt-4 max-w-xl leading-relaxed text-ink-500">
+            Un lugar cálido y lleno de detalles, pensado para que te sientas como en casa mientras te consentimos.
+          </p>
+        </Reveal>
+
+        <ul className="mt-12 grid gap-4 sm:grid-cols-3 md:gap-6">
+          {salonSpace.map((photo, i) => (
+            <li key={photo.src}>
+              <Reveal delay={i * 0.1} className="group relative aspect-[3/4] overflow-hidden rounded-[1.5rem] shadow-xl">
+                <Image
+                  src={photo.src}
+                  alt={photo.alt}
+                  fill
+                  sizes="(min-width: 640px) 33vw, 100vw"
+                  className={`object-cover transition-transform duration-700 group-hover:scale-105 ${photo.position}`}
+                />
+              </Reveal>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

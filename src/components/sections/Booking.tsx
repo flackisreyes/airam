@@ -163,7 +163,7 @@ export function Booking() {
         <Reveal className="grid overflow-hidden rounded-[2.5rem] bg-nude-50 shadow-[0_40px_80px_-40px_rgba(63,224,232,0.25)] ring-1 ring-nude-100 lg:grid-cols-[0.9fr_1.1fr]">
           {/* Panel informativo */}
           <div className="relative min-h-[340px] overflow-hidden bg-night p-8 text-ink-900 md:p-12">
-            <Image src={images.booking} alt="" fill sizes="(min-width: 1024px) 40vw, 100vw" className="object-cover opacity-35" />
+            <Image src={images.booking} alt="" fill sizes="(min-width: 1024px) 40vw, 100vw" className="object-cover object-top opacity-35" />
             <div className="absolute inset-0 bg-gradient-to-br from-night/90 via-night/70 to-champagne-500/25" />
             <div className="relative flex h-full flex-col">
               <p className="text-[0.7rem] font-semibold uppercase tracking-[0.4em] text-champagne-300">Reservaciones</p>

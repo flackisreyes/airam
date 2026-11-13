@@ -32,7 +32,7 @@ export function Gallery() {
               Nuestro trabajo <em className="text-gold">habla por nosotros</em>
             </>
           }
-          description="Cambios de look, diseños de cabello, peinados, maquillajes y resultados de tratamientos."
+          description="Cambios de look, diseños de cabello, peinados, maquillajes y uñas hechos en nuestro salón."
         />
 
         {/* Antes y después */}

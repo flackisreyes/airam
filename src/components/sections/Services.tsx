@@ -40,7 +40,7 @@ export function Services() {
                     alt={service.title}
                     fill
                     sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                    className="object-cover object-[50%_25%] transition-transform duration-700 ease-out group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-night/50 via-night/0 to-transparent opacity-70 transition-opacity duration-500 group-hover:opacity-90" />
                   <span className="absolute left-5 top-5 grid size-12 place-items-center rounded-full bg-nude-50/90 text-champagne-600 shadow-lg backdrop-blur transition-transform duration-500 group-hover:rotate-12">
